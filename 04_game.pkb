@@ -6,6 +6,28 @@ CREATE OR REPLACE PACKAGE BODY game_pkg AS
         DBMS_OUTPUT.PUT_LINE('Welcome, ' || p_player_name || '!');
         DBMS_OUTPUT.PUT_LINE('You are a pipe-digger dwarf. Your job is to dig pipes in mountains to make smoke from forges go up.');
         DBMS_OUTPUT.PUT_LINE('Enough. Get to your underground town and voice your concerns to your superiors about your exhausting work.');
+        DBMS_OUTPUT.PUT_LINE(' exhaust pipe  ---> =====:');
+        DBMS_OUTPUT.PUT_LINE('                   =%=--##');
+        DBMS_OUTPUT.PUT_LINE('           ..%@#.  =%:  *#');
+        DBMS_OUTPUT.PUT_LINE('          .#@:.@*. =%:  *#     .::.   <--- mountains');
+        DBMS_OUTPUT.PUT_LINE('        .*@=.   ##.=%:  *#   .=@**@=.');
+        DBMS_OUTPUT.PUT_LINE('      .=@%@@*:.:=%#+%:  *# .:%@.. .%%:.');
+        DBMS_OUTPUT.PUT_LINE('     =@*.  ..=*-:.*@%:  *#.%%:-%@%%@+%%.');
+        DBMS_OUTPUT.PUT_LINE('  .-%#.           .*@:  *@@-.    :.   -@#.');
+        DBMS_OUTPUT.PUT_LINE('..%%.              =@@.+@#              -@*.');
+        DBMS_OUTPUT.PUT_LINE('#@:.               =%#@+*#               .=@');
+        DBMS_OUTPUT.PUT_LINE('..                 =%:  *#                 .');
+        DBMS_OUTPUT.PUT_LINE('                   =%:  *#  <--- You re here');
+        DBMS_OUTPUT.PUT_LINE('                   =%:  #%');
+        DBMS_OUTPUT.PUT_LINE('                   =%:  #%');
+        DBMS_OUTPUT.PUT_LINE('         :%@@@@@@@@@%:  *@@@@@@=');
+        DBMS_OUTPUT.PUT_LINE('         :%=                 :@=');
+        DBMS_OUTPUT.PUT_LINE('         :%=                 :@=    <--- blast furnace');
+        DBMS_OUTPUT.PUT_LINE('         :%=                 :@=');
+        DBMS_OUTPUT.PUT_LINE('         :%=                 :@=');
+        DBMS_OUTPUT.PUT_LINE('         :%=                 :@=');
+        DBMS_OUTPUT.PUT_LINE('         :%+.................-@=');
+        DBMS_OUTPUT.PUT_LINE('          +********************.');
     END start_game;
 
     PROCEDURE examine IS
@@ -65,10 +87,10 @@ CREATE OR REPLACE PACKAGE BODY game_pkg AS
         v_counterattack NUMBER;
         BEGIN
             SELECT player_id, current_room INTO v_player_id, v_current_room FROM players WHERE ROWNUM = 1;
-            SELECT name, hp, room_id, status INTO v_monster_name, v_monster_hp, v_monster_room, v_monster_status FROM monsters WHERE room_id = v_current_room;
+            SELECT monster_id, name, hp, room_id, status INTO v_monster_id, v_monster_name, v_monster_hp, v_monster_room, v_monster_status FROM monsters WHERE room_id = v_current_room;
             IF v_monster_room = v_current_room AND v_monster_status = 'alive' THEN
                 v_monster_hp := v_monster_hp - 10;
-                UPDATE monsters SET hp = v_monster_hp WHERE monster_id = p_monster_id;
+                UPDATE monsters SET hp = v_monster_hp WHERE monster_id = v_monster_id;
                 DBMS_OUTPUT.PUT_LINE('You attack the ' || v_monster_name );
             END IF;
             v_counterattack := DBMS_RANDOM.VALUE(1, 20);
