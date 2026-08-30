@@ -5,5 +5,8 @@ CREATE OR REPLACE PACKAGE game_pkg AS
     PROCEDURE encounter(p_monster_id IN NUMBER);
     PROCEDURE attack;
     PROCEDURE defend;
+    PROCEDURE check_inventory;
+    PROCEDURE use(p_item_name IN VARCHAR2);
+    PROCEDURE hpcheck;
 END game_pkg;
 /

@@ -74,5 +74,6 @@ CREATE TABLE monsters (
 CREATE TABLE items (
     item_id NUMBER PRIMARY KEY,
     room_id NUMBER,
-    name VARCHAR2(50)
+    name VARCHAR2(50),
+    found NUMBER(1) DEFAULT 0 CHECK (found IN (0, 1))
 );
