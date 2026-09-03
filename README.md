@@ -22,7 +22,7 @@ SET SERVEROUTPUT ON
 @/home/sqlcl/01_schema.sql
 @/home/sqlcl/02_init.sql
 @/home/sqlcl/03_game.pks
-@/home/sqlcl/03_game.pkb
+@/home/sqlcl/04_game.pkb
 ```
 
 When compiled game is ready to "play"
